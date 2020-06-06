@@ -10,11 +10,10 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Paint
 import android.graphics.Canvas
-import android.graphics.RectF
 import android.graphics.Color
 
 val colors : Array<String> = arrayOf("#3F51B5", "#009688", "#03A9F4", "#4CAF50", "#F44336")
-val parts : Int = 5
+val parts : Int = 4
 val scGap : Float = 0.02f / parts
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 45f
@@ -33,7 +32,7 @@ fun Canvas.drawWing(i : Int, size : Float, sf1 : Float, sf2 : Float, paint : Pai
     save()
     translate(size * si, 0f)
     rotate(-rot * si * sf2)
-    drawLine(0f, 0f, size * sf1, 0f, paint)
+    drawLine(0f, 0f, size * sf1 * si, 0f, paint)
     restore()
 }
 
@@ -45,7 +44,7 @@ fun Canvas.drawBallWingsUp(scale : Float, w : Float, h : Float, paint : Paint) {
     val sf3 : Float = sf.divideScale(2, parts)
     val sf4 : Float = sf.divideScale(3, parts)
     save()
-    translate(0f, (h / 2 - size /2) * (1f - sf4))
+    translate(0f, (h / 2 - size) * (1f - sf4))
     drawCircle(0f, 0f, size * sf1, paint)
     for (j in 0..1) {
         drawWing(j, size, sf2, sf3, paint)
