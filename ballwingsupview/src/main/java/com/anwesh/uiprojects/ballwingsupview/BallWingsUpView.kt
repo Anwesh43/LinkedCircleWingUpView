@@ -217,4 +217,13 @@ class BallWingsUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BallWingsUpView {
+            val view : BallWingsUpView = BallWingsUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
