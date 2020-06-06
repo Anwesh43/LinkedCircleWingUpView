@@ -192,4 +192,27 @@ class BallWingsUpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BallWingsUpView) {
+
+        private val animator : Animator = Animator(view)
+        private val bwu : BallWingsUp = BallWingsUp(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bwu.draw(canvas, paint)
+            animator.animate {
+                bwu.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bwu.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
